@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models # type: ignore
 
 
 # Create your models here.
@@ -7,3 +7,4 @@ class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(unique=True, max_length=50)
     desc = models.TextField(null=True, blank=True)
+    status = models.BooleanField(default=True)

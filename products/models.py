@@ -1,5 +1,5 @@
-from django.db import models
-from django.core.validators import RegexValidator
+from django.db import models # type: ignore
+from django.core.validators import RegexValidator # type: ignore
 from categories.models import Category
 
 # Create your models here.
@@ -13,4 +13,4 @@ class Product(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     stock = models.PositiveIntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
+    status = models.BooleanField(default=True)

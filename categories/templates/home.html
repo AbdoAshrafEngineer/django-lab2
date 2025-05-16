@@ -1,0 +1,18 @@
+{% extends 'templates/parent.html' %} {% block title %}Home{% endblock %}
+{% block content %}
+<header>
+  <h1>My Electronics Store</h1>
+</header>
+<nav>
+  <a href="home.html">Categories</a>
+  <a href="add_category.html">Add Category</a>
+</nav>
+<main>
+  <ul>
+    <li><a href="categories/smartphones.html">Smartphones</a></li>
+    <li><a href="categories/laptops.html">Laptops</a></li>
+    <li><a href="categories/audio-devices.html">Audio Devices</a></li>
+    <li><a href="categories/wearables.html">Wearables</a></li>
+  </ul>
+</main>
+{% endblock %}
