@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Smartphone</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>My Electronics Store</h1>
+    </header>
+    <nav>
+      <a href="../home.html">Categories</a>
+      <a href="smartphones.html">Smartphones</a>
+    </nav>
+    <main>
+      <form action="">
+        <h3>complete smartphone information to add:</h3>
+        <label for="prod_name">Name: </label>
+        <input
+          type="text"
+          id="prod_name"
+          name="prod_name"
+          class="form-control form-control"
+          required
+        />
+
+        <label for="prod_price">Price: </label>
+        <input
+          type="text"
+          id="prod_price"
+          name="prod_price"
+          class="form-control form-control"
+          required
+        />
+
+        <label for="prod_stock">Stock: </label>
+        <input
+          type="text"
+          id="prod_stock"
+          name="prod_stock"
+          class="form-control form-control"
+          required
+        />
+
+        <label for="prod_sku">SKU: </label>
+        <input
+          type="text"
+          id="prod_sku"
+          name="prod_sku"
+          class="form-control form-control"
+          required
+        />
+
+        <label for="prod_des">Description: </label>
+        <input
+          type="text"
+          id="prod_des"
+          name="prod_des"
+          class="form-control form-control-lg"
+        />
+
+        <label for="prod_image">image: </label>
+        <input type="file" id="prod_image" name="prod_image" />
+      </form>
+    </main>
+  </body>
+</html>
