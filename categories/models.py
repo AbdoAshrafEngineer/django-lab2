@@ -8,3 +8,7 @@ class Category(models.Model):
     slug = models.SlugField(unique=True, max_length=50)
     desc = models.TextField(null=True, blank=True)
     status = models.BooleanField(default=True)
+
+    @classmethod
+    def getall(cls):
+        return cls.objects.filter(status=True)
