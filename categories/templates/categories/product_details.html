@@ -6,7 +6,7 @@ block content %}
   </header>
   <nav>
     <a href="{% url 'home' %}">Categories</a>
-    <a href="{% url 'products_list' cat.slug %}">{{cat.name}}</a>
+    <a href="{% url 'products_list' cat.id %}">{{cat.name}}</a>
   </nav>
   <main>
     <h2>{{p.name}}</h2>

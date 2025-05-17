@@ -1,4 +1,4 @@
-{% extends 'templates/parent.html' %} {% block title %}Home{% endblock %} 
+{% extends 'parent.html' %}  {% block title %}Home{% endblock %} 
 {% block content %}
 <body>
   <header>
@@ -6,7 +6,7 @@
   </header>
   <nav>
     <a href="{% url 'home' %}">Categories</a>
-    <a href="{% url 'products_list' cat.slug %}">{{ cat.name }}</a>
+    <a href="{% url 'products_list' cat.id %}">{{ cat.name }}</a>
   </nav>
   <main>
     <form method="post" action="" enctype="multipart/form-data">

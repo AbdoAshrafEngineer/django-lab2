@@ -1,4 +1,4 @@
-{% extends 'templates/parent.html' %} {% block title %}Home{% endblock %}
+{% extends 'parent.html' %} {% block title %}Home{% endblock %}
 {% block content %}
 <header>
   <h1>My Electronics Store</h1>
@@ -9,8 +9,8 @@
 </nav>
 <main>
   <ul>
-    {% for c in cat%}
-      <li><a href={% url 'products_list' c.slug %}>c.name</a></li>
+    {% for c in cat %}
+      <li><a href="{% url 'products_list' c.id %}">{{c.name}}</a></li>
     {% endfor %}
   </ul>
 </main>
