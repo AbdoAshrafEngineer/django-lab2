@@ -1,0 +1,66 @@
+{% extends 'templates/parent.html' %} {% block title %}Home{% endblock %} 
+{% block content %}
+<body>
+  <header>
+    <h1>My Electronics Store</h1>
+  </header>
+  <nav>
+    <a href="{% url 'home' %}">Categories</a>
+    <a href="{% url 'products_list' cat.slug %}">{{ cat.name }}</a>
+  </nav>
+  <main>
+    <form method="post" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3>complete {{ cat.name }} information to add:</h3>
+      <label for="prod_name">Name: </label>
+      <input
+        type="text"
+        id="prod_name"
+        name="name"
+        class="form-control form-control"
+        required
+      />
+
+      <label for="prod_price">Price: </label>
+      <input
+        type="text"
+        id="prod_price"
+        name="price"
+        class="form-control form-control"
+        required
+      />
+
+      <label for="prod_stock">Stock: </label>
+      <input
+        type="text"
+        id="prod_stock"
+        name="stock"
+        class="form-control form-control"
+        required
+      />
+
+      <label for="prod_sku">SKU: </label>
+      <input
+        type="text"
+        id="prod_sku"
+        name="sku"
+        class="form-control form-control"
+        required
+      />
+
+      <label for="prod_des">Description: </label>
+      <input
+        type="text"
+        id="prod_des"
+        name="desc"
+        class="form-control form-control-lg"
+      />
+
+      <label for="prod_image">image: </label>
+      <input type="file" id="prod_image" name="image" /> <br />
+
+      <input type="submit" />
+    </form>
+  </main>
+</body>
+{% endblock %}

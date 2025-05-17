@@ -14,3 +14,4 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
+

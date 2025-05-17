@@ -1,0 +1,23 @@
+{% extends 'templates/parent.html' %} {% block title %}Home{% endblock %} {%
+block content %}
+<body>
+  <header>
+    <h1>My Electronics Store</h1>
+  </header>
+  <nav>
+    <a href="{% url 'home' %}">Categories</a>
+    <a href="{% url 'products_list' cat.slug %}">{{cat.name}}</a>
+  </nav>
+  <main>
+    <h2>{{p.name}}</h2>
+    <ul>
+      <img src="{% static 'images/{{p.image}}' %}" alt="{{p.name}}" />
+      <li>Price: {{p.price}}</li>
+      <li>Stock: {{p.stock}}</li>
+      <li>SKU: {{p.sku}}</li>
+      <li>Description:</li>
+      <p>{{p.desc}}</p>
+    </ul>
+  </main>
+</body>
+{% endblock %}
