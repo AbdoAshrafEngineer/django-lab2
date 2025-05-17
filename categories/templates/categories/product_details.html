@@ -1,5 +1,5 @@
-{% extends 'templates/parent.html' %} {% block title %}Home{% endblock %} {%
-block content %}
+{% extends 'parent.html' %} {% block title %}Home{% endblock %} 
+{% block content %}
 <body>
   <header>
     <h1>My Electronics Store</h1>
@@ -10,8 +10,8 @@ block content %}
   </nav>
   <main>
     <h2>{{p.name}}</h2>
+    <img src="/media/{{p.image}}" alt="{{p.name}}"/>
     <ul>
-      <img src="{% static 'images/'%} {{ p.image }}" alt="{{p.name}}" class="img-fluid"/>
       <li>Price: {{p.price}}</li>
       <li>Stock: {{p.stock}}</li>
       <li>SKU: {{p.sku}}</li>

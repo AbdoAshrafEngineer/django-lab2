@@ -48,27 +48,41 @@ def add_product(req, cat_id):
         stock = req.POST["stock"]
         sku = req.POST["sku"]
         desc = req.POST["desc"]
+        img = req.FILES["image"]
 
-        if name and price and sku:
+        if name and price and sku and img:
             Product.objects.create(
-                name=name, price=price, stock=stock, sku=sku, desc=desc, category=cat
+                name=name,
+                price=price,
+                stock=stock,
+                sku=sku,
+                desc=desc,
+                category=cat,
+                image=img
             )
             return redirect("products_list", cat_id=cat_id)
 
     return render(req, "categories/add_product.html", context)
 
 
-def product_details(req):
-    pass
+def product_details(req, cat_id, prod_id):
+    cat = Category.objects.get(id=cat_id)
+    prod = Product.objects.get(id=prod_id)
+    context = {"cat": cat, "p": prod}
+    return render(req, "categories/product_details.html", context)
+
 
 def hard_del_cat(req, cat_id):
     pass
 
+
 def soft_del_cat(req, cat_id):
     pass
 
+
 def hard_del_prod(req, prod_id):
     pass
+
 
 def soft_del_prod(req, prod_id):
     pass

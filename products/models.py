@@ -7,7 +7,7 @@ class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to="products/images", blank=True, null=True)
+    image = models.ImageField(upload_to="products/imgs", blank=True, null=True)
     sku = models.CharField(max_length=30,unique=True)
     desc = models.TextField(blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)

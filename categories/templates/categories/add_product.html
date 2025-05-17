@@ -9,7 +9,7 @@
     <a href="{% url 'products_list' cat.id %}">{{ cat.name }}</a>
   </nav>
   <main>
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <h3>complete {{ cat.name }} information to add:</h3>
       <label for="prod_name">Name: </label>
