@@ -1,0 +1,72 @@
+{% extends 'parent.html' %} {% block title %}Home{% endblock %} 
+{% block content%}
+<body>
+  <header>
+    <h1>My Electronics Store</h1>
+  </header>
+  <nav>
+    <a href="{% url 'home' %}">Categories</a>
+    <a href="{% url 'product_det' cat_id=cat.id prod_id=p.id %}">{{ cat.name }}</a>
+  </nav>
+  <main>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3>complete {{ cat.name }} information to edit:</h3>
+      <label for="prod_name">Name: </label>
+      <input
+        value="{{p.name}}"
+        type="text"
+        id="prod_name"
+        name="name"
+        class="form-control form-control"
+        required
+      />
+
+      <label for="prod_price">Price: </label>
+      <input
+        value="{{p.price}}"
+        type="text"
+        id="prod_price"
+        name="price"
+        class="form-control form-control"
+        required
+      />
+
+      <label for="prod_stock">Stock: </label>
+      <input
+        value="{{p.stock}}"
+        type="text"
+        id="prod_stock"
+        name="stock"
+        class="form-control form-control"
+        required
+      />
+
+      <label for="prod_sku">SKU: </label>
+      <input
+        value="{{p.sku}}"
+        type="text"
+        id="prod_sku"
+        name="sku"
+        class="form-control form-control"
+        required
+      />
+
+      <label for="prod_des">Description: </label>
+      <input
+        value="{{p.desc}}"
+        type="text"
+        id="prod_des"
+        name="desc"
+        class="form-control form-control-lg"
+      />
+
+      <label for="prod_image">image: </label>
+      <input value="{{p.image}}" type="file" id="prod_image" name="image" />
+      <br />
+
+      <button type="submit">Update Product</button>
+    </form>
+  </main>
+</body>
+{% endblock %}

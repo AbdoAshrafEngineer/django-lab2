@@ -1,5 +1,5 @@
-{% extends 'parent.html' %} {% block title %}Home{% endblock %} 
-{% block content %}
+{% extends 'parent.html' %} {% block title %}Home{% endblock %}
+{% block content%}
 <body>
   <header>
     <h1>My Electronics Store</h1>
@@ -9,8 +9,29 @@
     <a href="{% url 'products_list' cat.id %}">{{cat.name}}</a>
   </nav>
   <main>
+    <a
+      href="{% url 'update_prod' cat_id=cat.id prod_id=p.id  %}"
+      class="btn"
+      style="display: inline-block"
+      >Update</a
+    >
+    <form
+      action="{% url 'soft_del_prod' cat_id=cat.id prod_id=p.id %}"
+      method="post"
+      style="display: inline; margin-left: 0.5em"
+    >
+      {% csrf_token %}
+      <button
+        type="submit"
+        class="btn btn-danger"
+        onclick="return confirm('Are you sure you want to remove this product?');"
+      >
+        Remove
+      </button>
+    </form>
+
     <h2>{{p.name}}</h2>
-    <img src="/media/{{p.image}}" alt="{{p.name}}"/>
+    <img src="/media/{{p.image}}" alt="{{p.name}}" />
     <ul>
       <li>Price: {{p.price}}</li>
       <li>Stock: {{p.stock}}</li>
