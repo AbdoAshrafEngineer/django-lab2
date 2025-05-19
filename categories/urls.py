@@ -19,4 +19,24 @@ urlpatterns = [
         views.soft_del_prod,
         name="soft_del_prod",
     ),
+    # path for new_product_using_modelform
+    path("new-product/<int:cat_id>", views.new_product, name="new_product"),
+    # path for update_product_using_regular_form
+    path(
+        "category/<int:cat_id>/update-product/<int:prod_id>",
+        views.prod_update_form,
+        name="prod_update_form",
+    ),
+    # path list products using view class based
+    path(
+        "prod-list-class/<int:cat_id>",
+        views.list_products_class.as_view(),
+        name="prod_list_class",
+    ),
+    #path for hard delete using class based view
+    path(
+        "category/<int:cat_id>/hard-delete/product/<int:prod_id>",
+        views.product_del_class.as_view(),
+        name="hard_del",
+    ),
 ]

@@ -10,13 +10,13 @@
   </nav>
   <main>
     <a
-      href="{% url 'update_prod' cat_id=cat.id prod_id=p.id  %}"
+      href="{% url 'prod_update_form' cat_id=cat.id prod_id=p.id  %}"
       class="btn"
       style="display: inline-block"
       >Update</a
     >
     <form
-      action="{% url 'soft_del_prod' cat_id=cat.id prod_id=p.id %}"
+      action="{% url 'hard_del' cat_id=cat.id prod_id=p.id %}"
       method="post"
       style="display: inline; margin-left: 0.5em"
     >

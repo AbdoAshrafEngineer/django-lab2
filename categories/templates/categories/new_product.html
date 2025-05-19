@@ -1,0 +1,20 @@
+{% extends 'parent.html' %}  {% block title %}Home{% endblock %} 
+{% block content %}
+<body>
+  <header>
+    <h1>My Electronics Store</h1>
+  </header>
+  <nav>
+    <a href="{% url 'home' %}">Categories</a>
+    <a href="{% url 'products_list' cat.id %}">{{ cat.name }}</a>
+  </nav>
+  <main>
+    <h3>complete {{ cat.name }} information to add:</h3>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{f.as_p}}
+      <input type="submit" />
+    </form>
+  </main>
+</body>
+{% endblock %}

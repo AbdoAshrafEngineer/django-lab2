@@ -1,5 +1,5 @@
-{% extends 'parent.html' %}  {% block title %}Home{% endblock %} 
-{%block content %}
+{% extends 'parent.html' %} {% block title %}Home{% endblock %} 
+{%block content%}
 <body>
   <header>
     <h1>My Electronics Store</h1>
@@ -12,7 +12,10 @@
     <h2>{{ cat.name }}</h2>
     <ul>
       {% for p in prod %}
-      <li><a href="{% url 'product_det' cat_id=cat.id  prod_id=p.id %}">{{p.name}}</a></li>
+      <li>
+        <a href="{% url 'product_det' cat_id=cat.id  prod_id=p.id %}">{{p.name}}</a
+        >
+      </li>
       {% endfor %}
     </ul>
   </main>

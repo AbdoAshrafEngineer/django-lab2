@@ -10,7 +10,7 @@
 <main>
   <ul>
     {% for c in cat %}
-      <li><a href="{% url 'products_list' c.id %}">{{c.name}}</a></li>
+      <li><a href="{% url 'prod_list_class' c.id %}">{{c.name}}</a></li>
     {% endfor %}
   </ul>
 </main>
