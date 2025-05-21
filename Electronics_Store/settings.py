@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "accounts",
     "categories.apps.CategoriesConfig",
     "products.apps.ProductsConfig",
     "django.contrib.admin",
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "categories.middleware.login_required_middleware.LoginRequiredMiddleware",
 ]
 
 ROOT_URLCONF = "Electronics_Store.urls"
@@ -130,4 +132,6 @@ MEDIA_URL = "media/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
+AUTH_USER_MODEL = "accounts.MyUser"
+HOME_URL = "/categories"
+LOGIN_URL="/accounts/login"

@@ -1,6 +1,7 @@
-{% extends 'parent.html' %}  {% block title %}Home{% endblock %} 
-{%block content %}
-<body>
+{% extends 'parent.html' %}  
+{% block title %}Parent List{% endblock %} 
+{% comment %} {%block content %} {% endcomment %}
+{% block content %}
   <header>
     <h1>My Electronics Store</h1>
   </header>
@@ -16,5 +17,5 @@
       {% endfor %}
     </ul>
   </main>
-</body>
 {% endblock %}
+{% comment %} {% endblock %} {% endcomment %}

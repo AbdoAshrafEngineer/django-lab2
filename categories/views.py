@@ -4,6 +4,7 @@ from products.models import Product
 from django.utils.text import slugify
 from .forms import *
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -177,3 +178,51 @@ def prod_update_form(req, cat_id, prod_id):
     context = {"p": prod, "cat": cat, "f": form, "msg": msg}
 
     return render(req, "categories/update_prod_form.html", context)
+
+    # ======================================================================
+
+    # lab 4 (insert, update, delete, list) using generic views
+    # and register, login and logout
+
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from django.urls import reverse_lazy
+# insert
+class Insert_cat_gen(CreateView):
+    model = Category
+    success_url = reverse_lazy("home")
+    fields = ["name", "desc"]
+    queryset = Category.objects.filter(status=True)
+    context_object_name = 'cat'
+    template_name ='categories/insert_cat_gen.html'
+
+
+# list show for lgin user only
+class List_cat_gen(LoginRequiredMixin, ListView):
+    model = Category
+    queryset = Category.objects.filter(status=True)
+    template_name = 'categories/home_cat_gen.html'
+    context_object_name = "cat"
+
+
+# update
+class Update_cat_gen(UpdateView):
+    model = Category
+    queryset = Category.objects.filter(status=True)
+    template_name = "categories/update_cat.html"
+    success_url=reverse_lazy('home')
+    fields = ["name", "desc"]
+    context_object_name = "cat"
+
+# delete
+class Delete_cat(DeleteView):
+    model=Category
+    queryset = Category.objects.filter(status=True)
+    success_url = reverse_lazy("home")
+
+    def post(self,request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.status = False
+        self.object.save()
+        return redirect('home')
+
+# =========================registrations=====================================
