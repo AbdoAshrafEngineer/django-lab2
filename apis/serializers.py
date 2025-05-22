@@ -6,6 +6,6 @@ from products.models import *
 # Create your models here.
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Product
+        model = Product
         fields = ["name", "price", "stock", "sku"]
         
