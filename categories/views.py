@@ -8,19 +8,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
+
 # class based for list products
 class list_products_class(View):
     def get(self, req, cat_id):
         category = Category.objects.get(id=cat_id)
         products = Product.objects.filter(category=category, status=True)
         context = {"prod": products, "cat": category}
-        return render(req, 'categories/list_prods.html' , context)
+        return render(req, "categories/list_prods.html", context)
+
 
 class product_del_class(View):
     def post(self, req, cat_id, prod_id):
         prod = Product.objects.get(id=prod_id)
         prod.delete()
         return redirect("prod_list_class", cat_id=cat_id)
+
 
 def home(req):  # show all categoires need all categories from database
     context = {"cat": Category.objects.all()}
@@ -146,22 +149,22 @@ def prod_update_form(req, cat_id, prod_id):
     cat = Category.objects.get(id=cat_id)
     prod = Product.objects.get(id=prod_id)
     context = {"p": prod, "cat": cat}
-    initial_data ={
-        'name': prod.name,
-        'price': prod.price,
-        'stock': prod.stock,
-        'sku': prod.sku,
-        'desc': prod.desc,
+    initial_data = {
+        "name": prod.name,
+        "price": prod.price,
+        "stock": prod.stock,
+        "sku": prod.sku,
+        "desc": prod.desc,
     }
 
     if req.method == "POST":
         form = ProductForm(data=req.POST, files=req.FILES)
         if form.is_valid():
-            prod.name = form.cleaned_data['name']
-            prod.price = form.cleaned_data['price']
-            prod.stock = form.cleaned_data['stock']
-            prod.sku = form.cleaned_data['sku']
-            prod.desc = form.cleaned_data['desc']
+            prod.name = form.cleaned_data["name"]
+            prod.price = form.cleaned_data["price"]
+            prod.stock = form.cleaned_data["stock"]
+            prod.sku = form.cleaned_data["sku"]
+            prod.desc = form.cleaned_data["desc"]
 
             if form.cleaned_data["image"]:
                 prod.image = form.cleaned_data["image"]
@@ -184,23 +187,43 @@ def prod_update_form(req, cat_id, prod_id):
     # lab 4 (insert, update, delete, list) using generic views
     # and register, login and logout
 
+
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 from django.urls import reverse_lazy
+
+
 # insert
 class Insert_cat_gen(CreateView):
     model = Category
     success_url = reverse_lazy("home")
     fields = ["name", "desc"]
     queryset = Category.objects.filter(status=True)
-    context_object_name = 'cat'
-    template_name ='categories/insert_cat_gen.html'
+    context_object_name = "cat"
+    template_name = "categories/insert_cat_gen.html"
+
+    def generate_unique_slug(self, name):
+        base_slug = slugify(name)
+        unique_slug = base_slug
+        counter = 1
+
+        while Category.objects.filter(slug=unique_slug).exists():
+            unique_slug = f"{base_slug}-{counter}"
+            counter += 1
+
+        return unique_slug
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.slug = self.generate_unique_slug(instance.name)
+        instance.save()
+        return super().form_valid(form)
 
 
 # list show for lgin user only
 class List_cat_gen(LoginRequiredMixin, ListView):
     model = Category
     queryset = Category.objects.filter(status=True)
-    template_name = 'categories/home_cat_gen.html'
+    template_name = "categories/home_cat_gen.html"
     context_object_name = "cat"
 
 
@@ -209,20 +232,22 @@ class Update_cat_gen(UpdateView):
     model = Category
     queryset = Category.objects.filter(status=True)
     template_name = "categories/update_cat.html"
-    success_url=reverse_lazy('home')
+    success_url = reverse_lazy("home")
     fields = ["name", "desc"]
     context_object_name = "cat"
 
+
 # delete
 class Delete_cat(DeleteView):
-    model=Category
+    model = Category
     queryset = Category.objects.filter(status=True)
     success_url = reverse_lazy("home")
 
-    def post(self,request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.status = False
         self.object.save()
-        return redirect('home')
+        return redirect("home")
+
 
 # =========================registrations=====================================

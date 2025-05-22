@@ -6,7 +6,11 @@ from django.urls import reverse
 class LoginRequiredMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
-        self.exempt_urls = [reverse("login"), reverse("admin:login")]
+        self.exempt_urls = [
+            reverse("login"),
+            reverse("admin:login"),
+            reverse("register")
+        ]
         if hasattr(settings, "LOGIN_EXEMPT_URLS"):
             self.exempt_urls += settings.LOGIN_EXEMPT_URLS
 

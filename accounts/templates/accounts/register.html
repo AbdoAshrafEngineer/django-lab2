@@ -1,0 +1,16 @@
+{% extends 'parent.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="register-container">
+    <h1>Electronics Store</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{f.as_p}}
+        <p class="login-prompt">
+            Already have an account? 
+            <a href="{% url 'login' %}" class="login-link">Login</a>
+        </p>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+{% endblock %}
