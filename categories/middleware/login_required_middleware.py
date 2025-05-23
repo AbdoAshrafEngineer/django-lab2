@@ -9,7 +9,8 @@ class LoginRequiredMiddleware:
         self.exempt_urls = [
             reverse("login"),
             reverse("admin:login"),
-            reverse("register")
+            reverse("register"),
+            "/apis/",
         ]
         if hasattr(settings, "LOGIN_EXEMPT_URLS"):
             self.exempt_urls += settings.LOGIN_EXEMPT_URLS

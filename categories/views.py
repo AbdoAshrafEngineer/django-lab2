@@ -121,8 +121,7 @@ def soft_del_prod(req, cat_id, prod_id):
     return redirect("products_list", cat_id=cat_id)
 
 
-# def hard_del_prod(req, prod_id):
-#     pass
+
 # ===============================================================================
 
 
@@ -249,5 +248,3 @@ class Delete_cat(DeleteView):
         self.object.save()
         return redirect("home")
 
-
-# =========================registrations=====================================

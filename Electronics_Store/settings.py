@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    'rest_framework.authtoken',
     "apis"
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -55,7 +57,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "categories.middleware.login_required_middleware.LoginRequiredMiddleware",
 ]
-
+REST_FRAMEWORK = {
+    # Remove authentication requirements globally
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",  # Allow unrestricted access
+    ],
+    # Optional: Remove authentication schemes if not needed
+    "DEFAULT_AUTHENTICATION_CLASSES": [],  # Disable authentication
+}
 ROOT_URLCONF = "Electronics_Store.urls"
 
 TEMPLATES = [
